@@ -4,6 +4,7 @@
 }
 
 .navbar{
+    height: 92px;
     font-size: 27px;
 }
 
@@ -27,3 +28,22 @@
   .navbar .nav-link {
     color: #c92039 !important;
   }
+
+.deskInfo{
+    color : white;
+    background-color: #172b52;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.deskno{
+    margin-left: 93px;
+    margin-top: 6px;
+}
+
+.headerLinks{
+    background-color: #c92039 ;
+    height: 30px;
+}
+
