@@ -1,0 +1,29 @@
+.title{
+    margin-left : 24%;
+    font-size: 45px;
+}
+
+.navbar{
+    font-size: 27px;
+}
+
+.custom_navbar{
+    background-color: white; /* Dark gray */
+  color: #c92039;
+}
+
+.institute{
+    font-size: 30px;
+}
+
+.links{
+    margin : 0 10px 0;
+}
+
+.navbar .navbar-brand.institute {
+    color: #c92039 !important;
+  }
+  
+  .navbar .nav-link {
+    color: #c92039 !important;
+  }
