@@ -16,7 +16,7 @@ const Header = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="container-fluid title">Admin Dashboard</div>
+        <div className="container-fluid admin-title">Admin Dashboard</div>
         <div className="collapse navbar-collapse " id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item links">
@@ -26,7 +26,7 @@ const Header = () => {
             </li>
             <li className="nav-item links">
               <a className="nav-link" href="#">
-                LogOut
+                Log Out
               </a>
             </li>
           </ul>
