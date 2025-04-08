@@ -1,3 +1,4 @@
+import { Outlet } from "react-router";
 import "./App.css";
 import AdminDashboard from "./components/adminDashboard";
 import DeskNo from "./components/deskNo";
@@ -10,7 +11,7 @@ function App() {
     <>
       <Headerlinks />
       <AdminDashboard />
-      <Hero />
+      <Outlet />
       <Footer />
     </>
   );
