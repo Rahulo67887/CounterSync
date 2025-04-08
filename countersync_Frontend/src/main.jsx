@@ -5,7 +5,7 @@ import "./index.css";
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Hero from "./components/Hero.jsx";
-import LogIn from "./components/LogIn.jsx";
+import CreatePortal from "./components/CreatePortal.jsx";
 
 const router = createBrowserRouter([
   {
@@ -17,8 +17,8 @@ const router = createBrowserRouter([
         element: <Hero />,
       },
       {
-        path: "/logIn",
-        element: <LogIn />,
+        path: "/createportal",
+        element: <CreatePortal />,
       },
     ],
   },

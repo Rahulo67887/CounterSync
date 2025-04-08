@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 const Header = () => {
   return (
     <nav className="navbar navbar-expand-lg  custom_navbar">
@@ -20,9 +22,13 @@ const Header = () => {
         <div className="collapse navbar-collapse " id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item links">
-              <a className="nav-link active" aria-current="page" href="#">
+              <Link
+                className="nav-link active"
+                aria-current="page"
+                to="/createportal"
+              >
                 Create Portal
-              </a>
+              </Link>
             </li>
             <li className="nav-item links">
               <a className="nav-link" href="#">
