@@ -1,13 +1,17 @@
+if(process.env.NODE_ENV!="production"){
+    require("dotenv").config();
+}
 const express=require("express");
 const app=express();
 const mongoose=require("mongoose");
+const Db_URL=process.env.DB_URL;
 
 app.get("/", (req, res) => {
     res.send("Server is running!");
 });
 
 async function dbConnect(){
-    mongoose.connect('mongodb://127.0.0.1:27017/counterSync');
+    mongoose.connect(Db_URL);
 }
 
 dbConnect()
