@@ -20,4 +20,4 @@ const deskSchema=mongoose.Schema({
 });
 
 let Desk=mongoose.model("Desk", deskSchema);
-module.exports(Desk);
+module.exports=Desk;
