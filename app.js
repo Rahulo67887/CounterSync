@@ -1,22 +1,25 @@
 if(process.env.NODE_ENV!="production"){
     require("dotenv").config();
 }
+
 const express=require("express");
 const app=express();
 app.use(express.json());
 const mongoose=require("mongoose");
 const Db_URL=process.env.DB_URL;
 const Desk=require("./models/desk");
+const bcrypt=require("bcryptjs");
 
 app.get("/", (req, res) => {
     res.send("Server is running!");
 });
 
-app.post("/create", (req, res)=>{
+app.post("/create", async (req, res)=>{
     const {userName, password, isAdmin}=req.body;
     if(isAdmin==="true"){
         isAdmin=true;
     }
+
     const newDesk=new Desk({
         userName,
         password,
