@@ -16,13 +16,13 @@ app.get("/", (req, res) => {
 
 app.post("/create", async (req, res)=>{
     try{
-        const {userName, password, isAdmin}=req.body;
+        const {deskName, password, isAdmin}=req.body;
         if(isAdmin==="true"){
             isAdmin=true;
         }
 
         const newDesk=new Desk({
-            userName,
+            deskName,
             password,
             isAdmin,
         });
@@ -38,6 +38,31 @@ app.post("/create", async (req, res)=>{
         })
     }catch(err){
         console.log(err);
+        res.status(500).json("internal server error");
+    }
+})
+
+app.post("/login", async (req, res)=>{
+    try{
+        const {deskName, password} = req.body;
+        const desk=await Desk.findOne({deskName});
+        if(desk){
+            isDesk=desk.comparePassword(password);
+        }
+        else{
+            res.status(500).json("Invalid Credentials");
+        }
+        if(isDesk){
+            res.status(201).json({
+                msg : "login successfull",
+                token : await desk.generateAuthToken(),
+                userId : desk._id.toString(),
+            })
+        }
+        else{
+            res.status(500).json("Invalid Credentials");
+        }
+    }catch(err){
         res.status(500).json("internal server error");
     }
 })

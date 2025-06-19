@@ -3,7 +3,7 @@ const bcrypt=require("bcryptjs");
 const jwt=require("jsonwebtoken");
 
 const deskSchema=mongoose.Schema({
-    userName:{
+    deskName:{
         type : String,
         required : true,
     },
@@ -20,6 +20,10 @@ const deskSchema=mongoose.Schema({
         ref : "Counter",
     }
 });
+
+deskSchema.methods.comparePassword=async function(password){
+    return await bcrypt.compare(password, this.password);
+}
 
 deskSchema.methods.generateAuthToken=async function(){
     try{
