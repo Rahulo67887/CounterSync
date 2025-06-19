@@ -15,20 +15,31 @@ app.get("/", (req, res) => {
 });
 
 app.post("/create", async (req, res)=>{
-    const {userName, password, isAdmin}=req.body;
-    if(isAdmin==="true"){
-        isAdmin=true;
-    }
+    try{
+        const {userName, password, isAdmin}=req.body;
+        if(isAdmin==="true"){
+            isAdmin=true;
+        }
 
-    const newDesk=new Desk({
-        userName,
-        password,
-        isAdmin,
-    });
-    newDesk.save()
-    .then((desk)=>{
-        res.status(201).json(desk);
-    })
+        const newDesk=new Desk({
+            userName,
+            password,
+            isAdmin,
+        });
+        newDesk.save()
+        .then( async (desk)=>{
+            res.status(201).json(
+                {
+                    msg : "desk created",
+                    token : await newDesk.generateAuthToken(),
+                    userId : newDesk._id.toString(),
+                }
+            );
+        })
+    }catch(err){
+        console.log(err);
+        res.status(500).json("internal server error");
+    }
 })
 
 async function dbConnect(){
