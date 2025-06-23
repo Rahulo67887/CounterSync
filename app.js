@@ -9,12 +9,14 @@ const mongoose=require("mongoose");
 const Db_URL=process.env.DB_URL;
 const Desk=require("./models/desk");
 const bcrypt=require("bcryptjs");
+const signupSchema=require("./validators/validate_DeskSchema");
+const validate=require("./middlewares/validate_Middleware");
 
 app.get("/", (req, res) => {
     res.send("Server is running!");
 });
 
-app.post("/create", async (req, res)=>{
+app.post("/create", validate(signupSchema), async (req, res)=>{
     try{
         const {deskName, password, isAdmin}=req.body;
         if(isAdmin==="true"){
@@ -42,7 +44,7 @@ app.post("/create", async (req, res)=>{
     }
 })
 
-app.post("/login", async (req, res)=>{
+app.post("/login", validate(signupSchema),  async (req, res)=>{
     try{
         const {deskName, password} = req.body;
         const desk=await Desk.findOne({deskName});
