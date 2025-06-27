@@ -2,8 +2,8 @@ import { useState } from "react";
 
 const CreatePortal = () => {
   const [desk, setDesk] = useState({
-    deskName: "table 1",
-    password: "djksla",
+    deskName: "",
+    password: "",
   });
 
   const handleInput = (e) => {
@@ -16,9 +16,28 @@ const CreatePortal = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(desk);
+    try {
+      const response = await fetch(`http://localhost:3000/create`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(desk),
+      });
+
+      if (response.ok) {
+        console.log(response);
+        setDesk({
+          deskName: "",
+          password: "",
+        });
+      }
+    } catch (err) {
+      console.log("fetch error", err);
+    }
   };
   return (
     <div className="hero-container">

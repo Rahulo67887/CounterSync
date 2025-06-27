@@ -4,13 +4,23 @@ if(process.env.NODE_ENV!="production"){
 
 const express=require("express");
 const app=express();
-app.use(express.json());
+const cors=require("cors");
 const mongoose=require("mongoose");
 const Db_URL=process.env.DB_URL;
 const Desk=require("./models/desk");
 const bcrypt=require("bcryptjs");
 const signupSchema=require("./validators/validate_DeskSchema");
 const validate=require("./middlewares/validate_Middleware");
+
+const corsOptions={
+    origin:"http://localhost:5173",
+    methods : "GET, POST, PUT, DELETE",
+    credentials : true,
+};
+
+app.use(cors(corsOptions));
+
+app.use(express.json());
 
 app.get("/", (req, res) => {
     res.send("Server is running!");
