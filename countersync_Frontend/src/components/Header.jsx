@@ -1,6 +1,10 @@
 import { Link } from "react-router";
+import { useAuth } from "../store/auth";
 
 const Header = () => {
+  const { isLoggedIn } = useAuth();
+  console.log(isLoggedIn);
+
   return (
     <nav className="navbar navbar-expand-lg  custom_navbar">
       <div className="container-fluid">
@@ -30,11 +34,17 @@ const Header = () => {
                 Create Portal
               </Link>
             </li>
-            <li className="nav-item links">
-              <a className="nav-link" href="#">
+            {isLoggedIn ? (
+              <Link className="nav-item nav-link links" to="/logout">
                 Log Out
-              </a>
-            </li>
+              </Link>
+            ) : (
+              <>
+                <Link className="nav-link nav-item links" to="/login">
+                  Log In
+                </Link>
+              </>
+            )}
           </ul>
         </div>
       </div>

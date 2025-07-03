@@ -11,6 +11,7 @@ const Desk=require("./models/desk");
 const bcrypt=require("bcryptjs");
 const signupSchema=require("./validators/validate_DeskSchema");
 const validate=require("./middlewares/validate_Middleware");
+const errorMiddleware = require("./middlewares/error_middleware");
 
 const corsOptions={
     origin:"http://localhost:5173",
@@ -21,6 +22,7 @@ const corsOptions={
 app.use(cors(corsOptions));
 
 app.use(express.json());
+
 
 app.get("/", (req, res) => {
     res.send("Server is running!");
@@ -50,7 +52,7 @@ app.post("/create", validate(signupSchema), async (req, res)=>{
         })
     }catch(err){
         console.log(err);
-        res.status(500).json("internal server error");
+        next(err);
     }
 })
 
@@ -75,9 +77,11 @@ app.post("/login", validate(signupSchema),  async (req, res)=>{
             res.status(500).json("Invalid Credentials");
         }
     }catch(err){
-        res.status(500).json("internal server error");
+        next(err);
     }
 })
+
+app.use(errorMiddleware);
 
 async function dbConnect(){
     mongoose.connect(Db_URL);

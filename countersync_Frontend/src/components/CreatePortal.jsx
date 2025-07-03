@@ -1,10 +1,16 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
+const URL = `http://localhost:3000/create`;
 
 const CreatePortal = () => {
   const [desk, setDesk] = useState({
     deskName: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const handleInput = (e) => {
     let name = e.target.name;
@@ -28,12 +34,19 @@ const CreatePortal = () => {
         body: JSON.stringify(desk),
       });
 
+      const res_data = await response.json();
       if (response.ok) {
         console.log(response);
         setDesk({
           deskName: "",
           password: "",
         });
+        toast.success("Portal Created Successfully");
+        navigate("/login");
+      } else {
+        toast.error(
+          res_data.extraDetails ? res_data.extraDetails : res_data.errMsg
+        );
       }
     } catch (err) {
       console.log("fetch error", err);
