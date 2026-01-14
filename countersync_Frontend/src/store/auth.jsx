@@ -1,25 +1,45 @@
-import { createContext, useState } from "react";
-import { useContext } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 export const AuthContext = createContext();
 
+const TOKEN_KEY="token";
+
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [token, setToken] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  
+  useEffect(()=>{
+    const storedToken=localStorage.getItem(TOKEN_KEY)
+    if(storedToken){
+      setToken(storedToken);
+    }
+    setIsLoading(false);
+  }, []);
 
-  let isLoggedIn = !!token;
 
-  const storeTokenInLs = (token) => {
-    setToken(token);
-    return localStorage.setItem("token", token);
+  const login = (newToken) => {
+    localStorage.setItem(TOKEN_KEY, newToken);
+    setToken(newToken);
   };
 
   const logOutUser = () => {
-    setToken("");
-    return localStorage.removeItem("token");
+    localStorage.removeItem(TOKEN_KEY);
+    setToken(null);
   };
 
+
+  const value=useMemo(
+    ()=>({
+      token,
+      isLoggedIn: Boolean(token),
+      login,
+      logOutUser,
+      isLoading,
+    }),
+    [token, isLoading]
+  )
   return (
-    <AuthContext.Provider value={{ isLoggedIn, storeTokenInLs, logOutUser }}>
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );
@@ -27,5 +47,10 @@ export const AuthProvider = ({ children }) => {
 
 export const useAuth = () => {
   const authContextValue = useContext(AuthContext);
+
+  if(!authContextValue){
+    throw new Error("useAuth must be used inside AuthProvider");
+  }
+
   return authContextValue;
 };

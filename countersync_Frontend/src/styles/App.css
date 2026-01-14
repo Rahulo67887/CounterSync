@@ -1,0 +1,192 @@
+.admin-title{
+    margin-left : 24%;
+    font-size: 45px;
+}
+
+.navbar{
+    height: 92px;
+    font-size: 27px;
+}
+
+.custom_navbar{
+    background-color: white; /* Dark gray */
+  color: #c92039;
+}
+
+.institute{
+    font-size: 30px;
+}
+
+.links{
+    margin : 0 10px 0;
+}
+
+.navbar .navbar-brand.institute {
+    color: #c92039 !important;
+  }
+  
+  .navbar .nav-link {
+    color: #c92039 !important;
+  }
+
+.deskInfo{
+    color : white;
+    background-color: #172b52;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.deskno{
+    margin-left: 93px;
+    margin-top: 6px;
+}
+
+.headerLinks{
+    background-color: #c92039 ;
+    height: 30px;
+}
+
+.rectangle {
+    width: 800px;
+    height: 450px;
+    border: 2px solid #333;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+
+  .hero-container {
+    padding: 60px;
+    display: flex;
+    justify-content: center; /* Horizontal centering */
+    align-items: center;     /* Vertical centering */
+    background-color: white;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  } 
+
+  .input-square {
+    width: 100px;
+    height: 70px;
+    text-align: center;
+    font-size: 60px;
+    font-weight: 500;
+    border: 2px solid #ffffff;
+    border-radius: 8px;
+    margin: 20px auto;
+    background-color: #f8f9fa;
+  }
+
+  .form-p{
+    font-size: 60px;
+    /* width: 165px;
+    height: 60px; */
+    font-weight: 500;
+  }
+
+  .form-detail{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .form-buttons{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px;
+  }
+
+  .form-btn {
+    height: 65px;
+    width: 110px;
+    font-size: 23px;
+  }
+
+  .passed-forms{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .passed-p{
+    font-size: 40px;
+  }
+
+  .passedform-buttons{
+    padding: 10px;
+  }
+
+  .passed-btn{
+    height: 50px;
+    width: 100px;
+    font-size: 20px;
+    border-radius: 0;
+  }
+  
+  .suggestion{
+    font-size: 22px;
+    margin: -25px;
+    font-weight: 500;
+  }
+
+  footer{
+   font-weight: 400;
+   font-size: 22px;
+   background-color: #172b52;
+   color: white !important;
+   margin-top: .5rem !important;
+  }
+
+  .nav-link {
+    color: lightgray;         /* Changes link color */
+  }
+
+  .nav-link:hover {
+    color: white;             /* Changes color on hover */
+  }
+
+  .text-center {
+    margin-top: 10px;
+    font-size: 18px;
+  }
+
+ .about{
+    font-weight: 400;
+   font-size: 21px;
+ }
+
+.create-text{
+  font-size: 33px;
+}
+
+.btn-text{
+  font-size: 25px;
+}
+
+label{
+  display: block !important;
+}
+
+.create-rectangle{
+  width: 550px;
+  height: 505px;
+  border: 2px solid #333;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+}
+

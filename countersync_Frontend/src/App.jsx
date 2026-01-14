@@ -1,12 +1,11 @@
 import { Outlet } from "react-router";
-import "./App.css";
-import AdminDashboard from "./components/adminDashboard";
-import DeskNo from "./components/deskNo";
-import Headerlinks from "./components/headerLinks";
-import Hero from "./components/Hero";
-import Footer from "./Footer";
+import AdminDashboard from "./components/layout/AdminDashboard";
+import Headerlinks from "./components/layout/HeaderLinks";
+import Footer from "./components/layout/Footer";
 
-function App() {
+import "./styles/app.css";
+
+const App=()=> {
   return (
     <>
       <Headerlinks />
