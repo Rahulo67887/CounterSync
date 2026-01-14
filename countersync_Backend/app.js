@@ -26,15 +26,16 @@ app.use("/countersync/desk", deskRoutes); // Mount desk-related routes
 
 app.use(errorMiddleware); // Global error-handling middleware
 
+// Async function to ensure the database is connected
 const startServer = async () => {
     try {
-        await connectDB();
-        app.listen(3000, () => {
+        await connectDB(); // Establish connection with the database
+        app.listen(3000, () => { // Start the Express server only after DB connection is successful
             console.log("app is listening at port 3000");
         });
-    } catch (err) {
+    } catch (err) { // Catch and log any errors during database connection
         console.error("DB connection failed", err);
     }
 };
 
-startServer();
+startServer(); // Invoke the startup function
