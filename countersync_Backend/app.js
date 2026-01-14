@@ -1,3 +1,4 @@
+// Load environment variables from .env file in non-production environments
 if(process.env.NODE_ENV!="production"){
     require("dotenv").config();
 }
@@ -5,28 +6,28 @@ if(process.env.NODE_ENV!="production"){
 const express=require("express");
 const cors=require("cors");
 
-const corsOptions=require("./config/cors");
-const connectDB=require("./config/db");
-const deskRoutes=require("./Routes/deskRoutes");
-const errorMiddleware = require("./middlewares/error_middleware");
+const corsOptions=require("./config/cors"); // CORS configuration (allowed origins, methods, etc.)
+const connectDB=require("./config/db"); // MongoDB connection logic
+const deskRoutes=require("./Routes/deskRoutes"); // Routes related to desk operations
+const errorMiddleware = require("./middlewares/error_middleware"); // Centralized error handler
 
-
+// Initialize Express application
 const app=express();
 
-app.use(cors(corsOptions));
-app.use(express.json());
+app.use(cors(corsOptions)); // Enable CORS with custom configuration
+app.use(express.json()); // Middleware to parse incoming JSON request bodies
 
 
-app.get("/", (req, res) => {
-    res.send("Server is running!");
+app.get("/", (req, res) => { // default route
+    res.send("Server is running!"); 
 });
 
-app.use("/countersync/desk", deskRoutes);
+app.use("/countersync/desk", deskRoutes); // Mount desk-related routes
 
-app.use(errorMiddleware);
+app.use(errorMiddleware); // Global error-handling middleware
 
-connectDB();
+connectDB(); // Establish database connection
 
-app.listen(3000, ()=>{
+app.listen(3000, ()=>{ // Start the server on port 3000
     console.log("app is listening at port 3000");
 });
